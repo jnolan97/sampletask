@@ -1,7 +1,8 @@
 import React from 'react';
 import './Task.css'
 import styled from 'styled-components';
-
+import useFetchAll from "./services/useFetchAll";
+import tasks from './db.json';
 const Container = styled.div`
     border: 1px solid lightgrey;
     border-radius: 2px;
@@ -25,12 +26,11 @@ const TaskList = styled.div`
     
 `;
 export default function Task() {
+    const data = tasks;
     return (
         <Container>
-            <Title>Title</Title>
-            <TaskList>
-            <p>Task works!</p>
-            </TaskList>
+            {data.tasks.map(i => (<Title>{i.title}</Title>))}
+            {data.tasks.map(s => (<TaskList> {s.description} </TaskList>))}
         </Container>
     )
-}
+    }

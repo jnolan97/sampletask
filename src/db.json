@@ -1,0 +1,22 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "category": "TODOS",
+      "title": "DragDrop",
+      "description": "Configure drag and drop."
+    },
+    {
+      "id": 2,
+      "category": "In Progress",
+      "title": "JSON",
+      "description": "Configure drag and drop."
+    },
+    {
+      "id": 3,
+      "category": "Done",
+      "title": "React",
+      "description": "Configure drag and drop."
+    }
+  ]
+}

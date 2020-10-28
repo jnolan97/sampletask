@@ -47,7 +47,8 @@ export default function Column({ column, names }) {
             // style={{backgroundColor: snapshot.isDraggingOver ? 'lightgreen': 'white'}}
             >
                 <div className='tasks'>
-                {d.tasks.map((task,index) => <Task key={task.id} task={names} index={index} />)}
+                    <Task key={tasks.id} task={names}></Task>
+                {/* {d.tasks.map((task,index) => <Task key={task.id} task={names} index={index} />)} */}
                 {/* {provided.placeholder} */}
                  {/* {props.tasks.map((task,index) => <Box onClick={props}>X</Box>)} */}
                  {/* <div onClick={() => props.tasks.splice(props.tasks,1)}>Delete</div> */}

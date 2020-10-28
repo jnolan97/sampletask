@@ -18,5 +18,20 @@
       "title": "React",
       "description": "Configure drag and drop."
     }
+  ],
+
+  "columns": [
+    {
+      "id": "TODOS",
+      "taskIds": 1
+    },
+    {
+      "id": "In Progress",
+      "taskIds": 2
+    },
+    {
+      "id": "Done",
+      "taskIds": 3
+    }
   ]
 }

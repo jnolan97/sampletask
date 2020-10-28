@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import Task from './task';
-import './task.css'
+import Task from './Task.jsx';
+import tasks from './db.json';
 
 const Container = styled.div`
     margin: 8px;
     border: 1px solid lightgrey;
     border-radius: 2px;
-    width: 33%;
-    display: flex;
+    width: 30%;
+    display: inline-block;
     flex-direction: column;
 `;
 const Title = styled.h3`
@@ -27,32 +27,35 @@ const TaskList = styled.div`
     
 `;
 
-export default function Column(props) {
+export default function Column({ column, names }) {
+    const d = tasks;
+   
+    console.log(names);
     return (
         <Container>
             <Title>
-                {props.column.title}
+            {column}
             </Title>
-            <Droppable droppableId={props.column.id}>
-            {(provided,snapshot) => (
+            {/* <Droppable droppableId={props.column.id}>
+            {(provided,snapshot) => ( */}
 
            
             <TaskList 
-            {...provided.droppableProps}
-            {...snapshot.isDraggingOver}
-            ref={provided.innerRef}
-            style={{backgroundColor: snapshot.isDraggingOver ? 'lightgreen': 'white'}}
+            // {...provided.droppableProps}
+            // {...snapshot.isDraggingOver}
+            // ref={provided.innerRef}
+            // style={{backgroundColor: snapshot.isDraggingOver ? 'lightgreen': 'white'}}
             >
                 <div className='tasks'>
-                {props.tasks.map((task,index) => <Task key={task.id} task={task} index={index} />)}
-                {provided.placeholder}
+                {d.tasks.map((task,index) => <Task key={task.id} task={names} index={index} />)}
+                {/* {provided.placeholder} */}
                  {/* {props.tasks.map((task,index) => <Box onClick={props}>X</Box>)} */}
                  {/* <div onClick={() => props.tasks.splice(props.tasks,1)}>Delete</div> */}
                 </div>
             </TaskList>
             
-             )}
-            </Droppable>
+             {/* )}
+            </Droppable> */}
         </Container>
     );
 }

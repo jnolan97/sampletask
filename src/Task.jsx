@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Task.css'
 import styled from 'styled-components';
 import useFetchAll from "./services/useFetchAll";
 import tasks from './db.json';
+// import Column from './column.jsx'
 const Container = styled.div`
     border: 1px solid lightgrey;
     border-radius: 2px;
@@ -10,27 +11,24 @@ const Container = styled.div`
     margin-bottom: 8px;
     background-color: white;
 `;
-const Title = styled.h3`
-    padding: 8px;
-    transition: 0.5s all ease-out;
-    &:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
-    }
-`;
-const TaskList = styled.div`
-    padding: 8px;
-    flex-grow: 1;
-    min-height: 200px;
-
-    
-`;
-export default function Task() {
-    const data = tasks;
+export default function Task(props) {
+   // const d = data.tasks
+   console.log(props.task[0].title)
     return (
+        <div>
         <Container>
-            {data.tasks.map(i => (<Title>{i.title}</Title>))}
-            {data.tasks.map(s => (<TaskList> {s.description} </TaskList>))}
+            <h5>{props.task[0].title}</h5>
+            {props.task[0].description}
+
+            {/* {data.tasks.map(s => (<TaskList> {s.description} </TaskList>))} */}
+            <div className='tasks'>
+                    {/* {data.tasks.map((task,index) => <Column key={task.id} task={task} index={index}></Column>)} */}
+                    {/* {provided.placeholder} */}
+                     {/* {props.tasks.map((task,index) => <Box onClick={props}>X</Box>)} */}
+                     {/* <div onClick={() => props.tasks.splice(props.tasks,1)}>Delete</div> */}
+                    </div>
+             
         </Container>
+            </div>
     )
     }

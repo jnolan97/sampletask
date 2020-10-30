@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Task from './Task.jsx';
 import tasks from './db.json';
+import { Droppable } from 'react-beautiful-dnd';
 
 const Container = styled.div`
     margin: 8px;
@@ -36,27 +37,27 @@ export default function Column({ column, names }) {
             <Title>
             {column}
             </Title>
-            {/* <Droppable droppableId={props.column.id}>
-            {(provided,snapshot) => ( */}
+            <Droppable droppableId={column}>
+                {(provided,snapshot) => (
 
-           
-            <TaskList 
-            // {...provided.droppableProps}
-            // {...snapshot.isDraggingOver}
-            // ref={provided.innerRef}
-            // style={{backgroundColor: snapshot.isDraggingOver ? 'lightgreen': 'white'}}
-            >
-                <div className='tasks'>
-                    <Task key={tasks.id} task={names}></Task>
-                {/* {d.tasks.map((task,index) => <Task key={task.id} task={names} index={index} />)} */}
-                {/* {provided.placeholder} */}
-                 {/* {props.tasks.map((task,index) => <Box onClick={props}>X</Box>)} */}
-                 {/* <div onClick={() => props.tasks.splice(props.tasks,1)}>Delete</div> */}
-                </div>
-            </TaskList>
-            
-             {/* )}
-            </Droppable> */}
+                    console.log('prov',provided),
+                    console.log('snapshot',snapshot),
+                <TaskList 
+                {...provided.droppableProps}
+                {...snapshot.isDraggingOver}
+                ref={provided.innerRef}
+                style={{backgroundColor: snapshot.isDraggingOver ? 'lightgreen': 'white'}}
+                >
+                    <div className='tasks'>
+                    {names.map((task,index) => <Task key={task.id} task={task} index={index} />)}
+                    {provided.placeholder}
+                     {/* {props.tasks.map((task,index) => <Box onClick={props}>X</Box>)} */}
+                     {/* <div onClick={() => props.tasks.splice(props.tasks,1)}>Delete</div> */}
+                    </div>
+                </TaskList>
+                
+                 )}
+                 </Droppable>
         </Container>
     );
 }

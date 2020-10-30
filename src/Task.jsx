@@ -3,6 +3,7 @@ import './Task.css'
 import styled from 'styled-components';
 import useFetchAll from "./services/useFetchAll";
 import tasks from './db.json';
+import { Draggable } from 'react-beautiful-dnd';
 // import Column from './column.jsx'
 const Container = styled.div`
     border: 1px solid lightgrey;
@@ -13,12 +14,20 @@ const Container = styled.div`
 `;
 export default function Task(props) {
    // const d = data.tasks
-   console.log(props.task[0].title)
+   //console.log(props.task[0].title)
+   console.log('taskprops',props)
     return (
         <div>
-        <Container>
-            <h5>{props.task[0].title}</h5>
-            {props.task[0].description}
+            <Draggable draggableId={props.task.id.toString()} index={props.index}>
+        {(provided,snapshot) => (
+        <Container
+        {...provided.draggableProps}
+        {...provided.dragHandleProps}
+        {...snapshot.isDragging}
+        {...snapshot.draggingOver}
+        ref={provided.innerRef}>
+            <h5>{props.task.title}</h5>
+            {props.task.description}
 
             {/* {data.tasks.map(s => (<TaskList> {s.description} </TaskList>))} */}
             <div className='tasks'>
@@ -29,6 +38,8 @@ export default function Task(props) {
                     </div>
              
         </Container>
+        )}
+        </Draggable>
             </div>
     )
     }

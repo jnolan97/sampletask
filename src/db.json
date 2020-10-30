@@ -17,6 +17,12 @@
       "category": "Done",
       "title": "React",
       "description": "Configure drag and drop."
+    },
+    {
+      "id": 4,
+      "category": "TODOS",
+      "title": "No disappear",
+      "description": "Stop going away"
     }
   ],
 

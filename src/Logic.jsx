@@ -69,8 +69,6 @@ class Logic extends React.Component {
         },
       };
       console.log('newstate',newState)
-    //   const list = this.reOrder(this.state.columns,start,end)
-    //   return this.setState({ list });
     this.setState(newState);
     return;
     } else {
@@ -104,8 +102,6 @@ class Logic extends React.Component {
   }
 
   render() {
-    // const data = Array.from(this.state.columns)
-    // console.log('arr',data)
   return (
     <Container>
   <DragDropContext onDragEnd={this.onDragEnd}>

@@ -26,7 +26,7 @@ export default function Task(props) {
         {...snapshot.isDragging}
         {...snapshot.draggingOver}
         ref={provided.innerRef}>
-            <h5>{props.task.id}</h5>
+            <h5>{props.task.title}</h5>
             {props.task.content}
 
             {/* {data.tasks.map(s => (<TaskList> {s.description} </TaskList>))} */}

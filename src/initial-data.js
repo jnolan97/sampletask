@@ -1,9 +1,9 @@
 const initialData = {
     tasks: {
-        'task-1': {id: 'task-1', content: 'Create data'},
-        'task-2': {id: 'task-2', content: 'Visualize data'},
-        'task-3': {id: 'task-3', content: 'Drag between columns'},
-        'task-4': {id: 'task-4', content: 'Follow up'}
+        'task-1': {id: 'task-1',title: 'Creating', content: 'Create data'},
+        'task-2': {id: 'task-2',title: 'Testing', content: 'Visualize data'},
+        'task-3': {id: 'task-3',title: 'Data', content: 'Drag between columns'},
+        'task-4': {id: 'task-4',title:'Initialize', content: 'Follow up'}
     },
     columns: {
         'column-1': {

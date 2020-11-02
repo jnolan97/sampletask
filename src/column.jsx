@@ -49,6 +49,7 @@ export default function Column({ column, names }) {
                 style={{backgroundColor: snapshot.isDraggingOver ? 'lightgreen': 'white'}}
                 >
                     <div className='tasks'>
+                        {console.log('names',names)}
                     {names.map((task,index) => <Task key={task.id} task={task} index={index} />)}
                     {provided.placeholder}
                      {/* {props.tasks.map((task,index) => <Box onClick={props}>X</Box>)} */}

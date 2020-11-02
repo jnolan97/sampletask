@@ -18,7 +18,7 @@ export default function Task(props) {
    console.log('taskprops',props)
     return (
         <div>
-            <Draggable draggableId={props.task.id.toString()} index={props.index}>
+            <Draggable draggableId={props.task.id} index={props.index}>
         {(provided,snapshot) => (
         <Container
         {...provided.draggableProps}
@@ -26,8 +26,8 @@ export default function Task(props) {
         {...snapshot.isDragging}
         {...snapshot.draggingOver}
         ref={provided.innerRef}>
-            <h5>{props.task.title}</h5>
-            {props.task.description}
+            <h5>{props.task.id}</h5>
+            {props.task.content}
 
             {/* {data.tasks.map(s => (<TaskList> {s.description} </TaskList>))} */}
             <div className='tasks'>

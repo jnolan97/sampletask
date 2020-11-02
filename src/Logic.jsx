@@ -6,11 +6,12 @@ import styled from 'styled-components';
 import { DragDropContext } from 'react-beautiful-dnd';
 import ReactDOM from 'react-dom';
 import {tasks, columns} from './db.json';
+import initialData from './initial-data';
 const Container = styled.div`
   display: flex;
 `;
 class Logic extends React.Component {
-    state = {tasks,columns};
+    state = initialData;
  onDragEnd = result => {
      
     const { destination, source, draggableId } = result;
@@ -24,24 +25,29 @@ class Logic extends React.Component {
         console.log('test',draggableId);
         console.log('test',source);
         console.log('bleh',this.state.columns)
-    let start = this.state.columns[0]
-    let end = this.state.columns[0];
-    for (var i= 0; i < this.state.columns.length; i++){
-        if (this.state.columns[i].id === source.droppableId){
-            start = this.state.columns[i]
-        }
-        if (this.state.columns[i].id === destination.droppableId){
-            end = this.state.columns[i]
-        }
-    }
+    // let start = this.state.columns[0]
+    // let end = this.state.columns[0];
+    const start = this.state.columns[source.droppableId];
+    const end = this.state.columns[destination.droppableId]
+    // for (var i= 0; i < this.state.columns.length; i++){
+    //     if (this.state.columns[i].id === source.droppableId){
+    //         start = this.state.columns[i]
+    //     }
+    //     if (this.state.columns[i].id === destination.droppableId){
+    //         end = this.state.columns[i]
+    //     }
+    // }
    // const start = this.state.columns[draggableId];
-    const s = this.state.columns[start];
+   // const s = this.state.columns[start];
     console.log('start',start)
     //const end = this.state.columns[destination.droppableId];
     console.log('end',end)
 
     if (start !== end){
       const startTaskIds = Array.from(start.taskIds);
+    //   const finishTaskIdsTest = Array.from(end.taskIds);
+    //   const items = this.reOrder(end.taskIds,startTaskIds,finishTaskIdsTest)
+    //   return this.setState({ items })
       startTaskIds.splice(source.index, 1);
       const newStart = {
         ...start,
@@ -53,6 +59,7 @@ class Logic extends React.Component {
         ...end,
         taskIds: finishTaskIds,
       };
+      console.log('state',newStart,newEnd)
       const newState = {
         ...this.state,
         columns: {
@@ -61,8 +68,11 @@ class Logic extends React.Component {
           [newEnd.id]: newEnd
         },
       };
-      this.setState(newState);
-      return;
+      console.log('newstate',newState)
+    //   const list = this.reOrder(this.state.columns,start,end)
+    //   return this.setState({ list });
+    this.setState(newState);
+    return;
     } else {
       const column = this.state.columns[source.droppableId];
       const newTaskIds = Array.from(column.taskIds);
@@ -80,29 +90,37 @@ class Logic extends React.Component {
           [newColumn.id]: newColumn,
         },
       };
+     
       this.setState(newState);
     }
 
   };
 
-  render() {
-      const data = Array.from(this.state.columns)
-      console.log('arr',data)
-    return (
-      <Container>
-    <DragDropContext onDragEnd={this.onDragEnd}>
-    {data.map((columnId,index) => {
-                const column = this.state.columns[index];
-                console.log(column.taskIds);
-                const names = this.state.tasks.filter(i => i.id === column.taskIds)
-                console.log('inside',column,names)
-                 return <Column key={column.id} column={column.id} names={names} /> //onDelete={this.onDelete(this.state)}
-                })}
-    </DragDropContext>
-    
-    </Container>
-    );
+  reOrder(list, start, end){
+      const result = Array.from(list)
+      const [removed] = result.splice(start, 1)
+      result.splice(end, 0, removed)
+      return result
   }
+
+  render() {
+    // const data = Array.from(this.state.columns)
+    // console.log('arr',data)
+  return (
+    <Container>
+  <DragDropContext onDragEnd={this.onDragEnd}>
+  {this.state.columnOrder.map((columnId) => {
+              const column = this.state.columns[columnId];
+              console.log(column.taskIds);
+              const names = column.taskIds.map(i => this.state.tasks[i])
+              console.log('inside',column,names)
+               return <Column key={column.id} column={column.id} names={names} /> //onDelete={this.onDelete(this.state)}
+              })}
+  </DragDropContext>
+  
+  </Container>
+  );
+}
 }
 
 export default Logic;

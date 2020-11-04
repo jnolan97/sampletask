@@ -22,21 +22,8 @@ class Logic extends React.Component {
         destination.index === source.index) {
           return;
         }
-        console.log('test',draggableId);
-        console.log('test',source);
-        console.log('bleh',this.state.columns)
-    // let start = this.state.columns[0]
-    // let end = this.state.columns[0];
     const start = this.state.columns[source.droppableId];
     const end = this.state.columns[destination.droppableId]
-    // for (var i= 0; i < this.state.columns.length; i++){
-    //     if (this.state.columns[i].id === source.droppableId){
-    //         start = this.state.columns[i]
-    //     }
-    //     if (this.state.columns[i].id === destination.droppableId){
-    //         end = this.state.columns[i]
-    //     }
-    // }
    // const start = this.state.columns[draggableId];
    // const s = this.state.columns[start];
     console.log('start',start)
@@ -46,14 +33,6 @@ class Logic extends React.Component {
     if (start !== end){
       const startTaskIds = Array.from(start.taskIds);
       const finishTaskIds = Array.from(end.taskIds);
-    //   const order = this.reOrder(startTaskIds,finishTaskIds,source.index,destination.index,draggableId)
-    // //   const startOrder = order[0];
-    // //   const endOrder = order[1];
-    //  console.log('order',order)
-    //   const finishTaskIdsTest = Array.from(end.taskIds);
-    //   const items = this.reOrder(end.taskIds,startTaskIds,finishTaskIdsTest)
-    //   return this.setState({ items })
-
       startTaskIds.splice(source.index, 1);
       const newStart = {
         ...start,

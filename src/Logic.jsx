@@ -46,11 +46,10 @@ class Logic extends React.Component {
     if (start !== end){
       const startTaskIds = Array.from(start.taskIds);
       const finishTaskIds = Array.from(end.taskIds);
-    //   const order = this.reOrder(source.index,startTaskIds,finishTaskIds)
-    //   const startOrder = order[0];
-    //   const endOrder = order[1];
-
-    //   console.log('order',startOrder,endOrder)
+    //   const order = this.reOrder(startTaskIds,finishTaskIds,source.index,destination.index,draggableId)
+    // //   const startOrder = order[0];
+    // //   const endOrder = order[1];
+    //  console.log('order',order)
     //   const finishTaskIdsTest = Array.from(end.taskIds);
     //   const items = this.reOrder(end.taskIds,startTaskIds,finishTaskIdsTest)
     //   return this.setState({ items })
@@ -102,13 +101,12 @@ class Logic extends React.Component {
 
   };
 
-  reOrder(index,start, end){
-      console.log(start);
-      console.log(end)
-      start.splice(index, 1)
-      end.splice(end, 0, start)
-      console.log('after reorder',start,end)
-      return end
+  reOrder(start,end,startIndex,endIndex,drag){
+      start.splice(startIndex,1);
+      end.splice(endIndex,0,drag)
+      return start,end
+
+      
   }
 
   render() {

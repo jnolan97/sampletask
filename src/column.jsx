@@ -30,8 +30,16 @@ const TaskList = styled.div`
 
 export default function Column({ column, names }) {
     const d = tasks;
-   
-    console.log(names);
+    const [task, setTask] = useState(names)
+    
+    const handleRemoveItem = () => {
+        const { id } = names[0].id;
+        console.log('d',id)
+        names.splice(id,1)
+        console.log('id',id)
+        setTask([...names]);
+    };
+    console.log('colnames',names);
     return (
         <Container>
             <Title>
@@ -51,6 +59,7 @@ export default function Column({ column, names }) {
                     <div className='tasks'>
                         {console.log('names',names)}
                     {names.map((task,index) => <Task key={task.id} task={task} index={index} />)}
+                    {names.map((btn,index) => <button key={btn.id} index={index} onClick={() => setTask(handleRemoveItem())}>Delete</button>)}
                     {provided.placeholder}
                      {/* {props.tasks.map((task,index) => <Box onClick={props}>X</Box>)} */}
                      {/* <div onClick={() => props.tasks.splice(props.tasks,1)}>Delete</div> */}

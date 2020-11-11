@@ -1,4 +1,4 @@
-import React, { useState,setState } from 'react';
+import React, { useState,setState,forwardRef, useRef, useImperativeHandle } from 'react';
 import './Task.css'
 import styled from 'styled-components';
 import useFetchAll from "./services/useFetchAll";
@@ -13,8 +13,30 @@ const Container = styled.div`
     background-color: white;
 `;
 export default function Task(props) {
+    console.log(props);
 
-   console.log('taskprops',props)
+    
+    const removeKey = () => {
+        console.log(props.task)
+        const update = {
+            id: null,
+            title: null,
+            content: null
+        }
+        let clone = Object.assign({}, props.task)
+        clone.id = undefined;
+        clone.title = undefined;
+        clone.content = undefined;
+        return clone
+        
+
+        // return arr
+    }
+    // const parentCall = () => {
+    //     this.props.handleRemoveItem()
+    // }
+
+    console.log('taskProps',props)
     return (
         <div>
             <Draggable draggableId={props.task.id} index={props.index}>
@@ -28,7 +50,7 @@ export default function Task(props) {
             <h5>{props.task.title}</h5>
             {props.task.content}
             
-
+            <button key={props.task.id} onClick={() => props.parent()}>X</button>
             <div className='tasks'>
                     </div>
              
@@ -37,16 +59,6 @@ export default function Task(props) {
         </Draggable>
             </div>
     )
+    
     }
 
-    const removeKey = () => {
-        const updatedState = {
-            task: {
-                id: undefined,
-                title: undefined,
-                content: undefined
-            },
-        };
-        console.log('delete',updatedState)
-        return updatedState;
-    }

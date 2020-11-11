@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useRef } from 'react';
 import styled from 'styled-components';
 import Task from './Task.jsx';
 import tasks from './db.json';
@@ -31,6 +31,7 @@ const TaskList = styled.div`
 export default function Column({ column, names }) {
     const d = tasks;
     const [task, setTask] = useState(names)
+    const childRef = useRef();
     
     const handleRemoveItem = () => {
         const { id } = names[0].id;
@@ -39,7 +40,6 @@ export default function Column({ column, names }) {
         console.log('id',id)
         setTask([...names]);
     };
-    console.log('colnames',names);
     return (
         <Container>
             <Title>
@@ -58,8 +58,8 @@ export default function Column({ column, names }) {
                 >
                     <div className='tasks'>
                         {console.log('names',names)}
-                    {names.map((task,index) => <Task key={task.id} task={task} index={index} />)}
-                    {names.map((btn,index) => <button key={btn.id} index={index} onClick={() => setTask(handleRemoveItem())}>Delete</button>)}
+                    {names.map((task,index) => <Task key={task.id} task={task} index={index} parent={() => handleRemoveItem()} />)}
+                    {/* {names.map((btn,index) => <button key={task.id} index={index} onClick={() => setTask(handleRemoveItem())}>X</button>)} */}
                     {provided.placeholder}
                      {/* {props.tasks.map((task,index) => <Box onClick={props}>X</Box>)} */}
                      {/* <div onClick={() => props.tasks.splice(props.tasks,1)}>Delete</div> */}
